@@ -3,11 +3,22 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        res=[0 for i in nums]
-        for i in range(len(nums)):
-            res[(i+k)%len(nums)]=nums[i]
-        for i in range(len(nums)):
-            nums[i]=res[i]
+        k=k%len(nums)
+        start,end=0,len(nums)-1
+        while start < end:
+            nums[start],nums[end]=nums[end],nums[start]
+            start,end=start+1,end-1
+            
+            
+        start,end=0,k-1
+        while start < end:
+            nums[start],nums[end]=nums[end],nums[start]
+            start,end=start+1,end-1
+            
+        start,end=k,len(nums)-1
+        while start < end:
+            nums[start],nums[end]=nums[end],nums[start]
+            start,end=start+1,end-1
             
             
         
