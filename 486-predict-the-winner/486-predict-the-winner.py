@@ -2,7 +2,7 @@ class Solution:
     
 
     def PredictTheWinner(self, nums: List[int]) -> bool:
-        # @lru_cache()
+        @lru_cache()
         def helper(leftindex, rightindex):
             if leftindex==rightindex:
                 return nums[leftindex]
