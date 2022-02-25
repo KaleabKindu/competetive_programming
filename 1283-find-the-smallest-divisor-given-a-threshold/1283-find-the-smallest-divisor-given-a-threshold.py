@@ -9,10 +9,10 @@ class Solution:
         right = max(nums)
         while left <= right:
             mid=(left + right)//2
-            if helper(mid) > threshold:
+            divisor = helper(mid)
+            if  divisor > threshold:
                 left = mid + 1
-            elif helper(mid) < threshold:
-                # print(helper(mid), mid)
+            elif divisor < threshold:
                 answer = mid
                 right = mid - 1
             else:
