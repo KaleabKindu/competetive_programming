@@ -11,14 +11,19 @@
 
 class Solution:
     def findSolution(self, customfunction: 'CustomFunction', z: int) -> List[List[int]]:
-        stak = []
-        for i in range(1,1000):
-            for j in range(1,1000):
-                if customfunction.f(i, j) == z:
-                    stak.append([i,j])
-                elif customfunction.f(i, j) > z:
-                    break
-        return stak
+        start = 1
+        end = 1000 
+        answer = []
+        while start <= 1000 and end >= 1:
+            temp = customfunction.f(start, end)
+            if temp > z:
+                end = end - 1
+            elif temp < z:
+                start = start + 1
+            else:
+                answer.append([start, end])
+                end = end - 1
+        return answer
                 
                     
     
