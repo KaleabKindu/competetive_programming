@@ -9,12 +9,10 @@ class Solution:
         self.total = 0
         def Inorder(node):
             if node: 
+                Inorder(node.left)
                 if node.val >= low and node.val <= high:
                     self.total += node.val 
-                if low < node.val:
-                    Inorder(node.left)
-                if high > node.val:
-                    Inorder(node.right)
+                Inorder(node.right)
         Inorder(root)
         return self.total
             
@@ -28,12 +26,5 @@ class Solution:
         
         
         
-#         if not root:
-#             return total
-#         if low <= root.val <= high:
-#             total += root.val
-#         print(total)
-#         self.rangeSumBST(root.left, low, high, total)
-#         self.rangeSumBST(root.right, low, high, total)
-#         # return total
+
         
