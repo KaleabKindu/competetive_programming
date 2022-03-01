@@ -10,19 +10,16 @@ class Employee:
 class Solution:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
         self.total = 0
+        self.employee={} 
         def impo(employee):
             if employee:
                 self.total += employee.importance
                 for i in employee.subordinates:
-                    for j in employees:
-                        if j.id == i:
-                            impo(j)
-                            break
-        
-        for employee in employees:
-            if employee.id == id:
-                impo(employee)
-                break
+                    impo(self.employee[i])
+         
+        for i in employees:
+            self.employee[i.id] = i
+        impo(self.employee[id])
         return self.total
         
         
