@@ -10,24 +10,21 @@ class Solution:
       
         def bfs():
             while self.queue:
-                for i in range(len(self.queue)):
-                    x, y = self.queue.popleft()
-                    for direction in DIR:
-                        new_rw, new_cn = x + direction[0], y + direction[1]
-                        if valid(new_rw, new_cn):
-                            grid[new_rw][new_cn] = 2
-                            self.visited.add((new_rw, new_cn))
-                            self.queue.append((new_rw, new_cn))
-                if self.queue:
-                    self.minute += 1
-
+                x, y, m = self.queue.popleft()
+                for direction in DIR:
+                    new_rw, new_cn = x + direction[0], y + direction[1]
+                    if valid(new_rw, new_cn):
+                        grid[new_rw][new_cn] = 2
+                        self.visited.add((new_rw, new_cn, m + 1 ))
+                        self.queue.append((new_rw, new_cn, m + 1))
+                self.minute = m
         in_bound = lambda row, col : 0 <= row < R and 0 <= col < C
         DIR = [[0,1],[1,0],[0,-1],[-1,0]]
         
         for i in range(R):
             for j in range(C):
-                if (i, j)not in self.visited  and grid[i][j] == 2:
-                    self.queue.append((i, j))
+                if (i, j) not in self.visited  and grid[i][j] == 2:
+                    self.queue.append((i, j, 0))
         bfs()
         for i in range(R):
             for j in range(C):
