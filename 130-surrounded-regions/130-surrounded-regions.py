@@ -54,29 +54,5 @@ class Solution:
         
         
         
-        
-        # def dfs(rw, cn):
-        #     self.region.add((rw, cn))
-        #     self.visited.add((rw, cn))
-        #     board[rw][cn] = "X"
-        #     if board[rw + 1][cn] == "0":
-        #         if (rw + 1, cn) not in self.visited:
-        #             dfs(rw + 1, cn)
-        #     if board[rw - 1][cn] == "0":
-        #         if (rw - 1, cn) not in self.visited:
-        #             dfs(rw - 1, cn)
-        #     if  board[rw][cn + 1] == "0":
-        #         if (rw, cn + 1) not in self.visited:
-        #             dfs(rw, cn + 1)
-        #     if board[rw][cn - 1] == "0":
-        #         if (rw, cn - 1) not in self.visited:
-        #             dfs(rw, cn - 1)
-        # in_bound = lambda row, col: 0 < row < R  and 0 < col < C 
-        # for i in range(R):
-        #     for j in range(C):
-        #         if board[i][j] == "O" and (i, j) not in self.visited :
-        #             dfs(i,j)
-        # for k in self.region:
-        #     board[k[0]][k[1]] = "X"
-        # self.region.clear()
+ 
                 
