@@ -33,7 +33,6 @@ class Solution:
         
         
         
-        return bfs(0, 0, 0)
         
         
         
@@ -52,20 +51,4 @@ class Solution:
         
         
         
-        
-#         def bfs(rw, cn, t):
-#             queue = deque()
-#             queue.append((rw, cn, t))
-#             self.visited.add((rw, cn))
-#             while queue:
-#                 x, y, mn = queue.popleft()
-#                 if x == R - 1 and y == C - 1:
-#                     return mn
-#                 for direction in DIR:
-#                     new_rw, new_cn = x + direction[0], y + direction[1]
-#                     if in_bound(new_rw, new_cn) and isvalid(x, y, new_rw, new_cn, mn):
-#                         self.visited.add((new_rw, new_cn))
-#                         queue.append((new_rw, new_cn, mn + 1))
-#                 queue.append((x, y, mn + 1))
-#             return queue
         
