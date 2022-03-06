@@ -12,12 +12,13 @@ class Solution:
             path.add(crse)
             for neighbor in graph[crse]:
                 if neighbor in path:
-                    self.cycle = True
+                    return True
                 if neighbor not in visited:
-                    dfs(neighbor)
+                    if dfs(neighbor): return True
             stak.append(crse)
             path.remove(crse)
+            return False
         for i in range(numCourses):
             if i not in visited:
-                dfs(i)
-        return stak if not self.cycle else []
+                if dfs(i): return []
+        return stak 
