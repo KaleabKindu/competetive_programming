@@ -8,21 +8,18 @@ class Node:
 
 class Solution:
     def maxDepth(self, root: 'Node') -> int:
-        self.maxdepth = 0
-        self.depth = 0
-        def depth(node):
-            if not node:
-                return
-            self.depth += 1
-            if node.children!=[] : 
-                for i in node.children:
-                    depth(i) 
-                    self.depth -= 1 
-            else:
-                self.maxdepth = max(self.maxdepth,self.depth)
         
-        depth(root)
-        return self.maxdepth
+        visited = set()
+        def dfs(node,  depth = 1):
+            visited.add(node)
+            maxdepth = depth
+            for child in node.children:
+                if child not in visited:
+                    maxdepth = max(maxdepth, dfs(child, depth + 1))
+                    
+            return maxdepth 
+        
+        return dfs(root) if root else 0
         
             
         
