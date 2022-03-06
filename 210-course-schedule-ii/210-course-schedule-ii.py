@@ -8,15 +8,15 @@ class Solution:
         visited = set()
         path = set()
         def dfs(crse):
-            visited.add(crse)
+            if crse in path:
+                return True
             path.add(crse)
             for neighbor in graph[crse]:
-                if neighbor in path:
-                    return True
                 if neighbor not in visited:
                     if dfs(neighbor): return True
             stak.append(crse)
             path.remove(crse)
+            visited.add(crse)
             return False
         for i in range(numCourses):
             if i not in visited:
