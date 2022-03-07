@@ -1,20 +1,22 @@
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
-        self.visited = set()
-        def flood(sr,sc):
-            if (sr,sc) not in self.visited:
-                color = image[sr][sc]
-                image[sr][sc] = newColor
-                self.visited.add((sr,sc))
-                if sc + 1 < len(image[0]) and image[sr][sc + 1] == color:
-                    flood( sr, sc + 1)
-                if sc - 1 >= 0 and image[sr][sc - 1] == color:
-                    flood(sr, sc - 1 )
-                if sr + 1 < len(image) and image[sr + 1][sc] == color:
-                    flood(sr + 1, sc)
-                if sr - 1 >= 0 and image[sr - 1][sc] == color:
-                    flood(sr - 1, sc)
-        flood(sr,sc)
+        R, C = len(image), len(image[0])
+        isvalid = lambda row, col: 0 <= row < R  and  0 <= col < C and not visited[row][col] 
+        DIR = [[0,1],[1,0],[0,-1],[-1,0]]
+        
+        queue = collections.deque([(sr, sc)])
+        visited = [[False for _ in range(C)] for _ in range(R)]
+        color = image[sr][sc] 
+        while queue:
+            row, col = queue.popleft()
+            image[row][col] = newColor
+            for direction in DIR:
+                new_row, new_col = row + direction[0], col + direction[1]
+                if isvalid(new_row, new_col) and image[new_row][new_col] == color:
+                    visited[new_row][new_col] = True
+                    queue.append((new_row, new_col))
+        
         return image
+            
         
         
