@@ -3,18 +3,17 @@ class Solution:
         graph = defaultdict(list)
         for course_1, course_2 in prerequisites:
             graph[course_1].append(course_2)
-        visited = set()
+        path = set()
         def dfs(crse):
-            if not graph[crse]:
-                return True
-            if crse in visited:
+            if crse in path:
                 return False
-            visited.add(crse)
+            path.add(crse)
             for course in graph[crse]:
                 if not dfs(course): return False
             graph[crse] = []
+            path.remove(crse)
             return True
-                
+         
         for i in range(numCourses):
                if not dfs(i): return False
         return True
