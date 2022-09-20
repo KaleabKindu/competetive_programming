@@ -7,6 +7,7 @@ class Solution:
             for j in range(m - 1, -1, -1):
                 if nums1[i] == nums2[j]:
                     dp[i][j] = 1 + dp[i + 1][j + 1]
-                    answer = max(answer, dp[i][j])
+                    if dp[i][j] > answer:
+                        answer = dp[i][j]
                     
         return answer
