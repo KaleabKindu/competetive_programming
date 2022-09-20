@@ -14,11 +14,11 @@ class Solution:
                 dfs(node.left, row + 1, col - 1)
                 dfs(node.right, row + 1, col + 1)
         dfs()
-        answer = sorted(memo, key=lambda key:key)
-        temp = []
-        for key in answer:
-            arr = []
-            for array in sorted(memo[key]):
-                arr.append(array[1])
-            temp.append(arr)
-        return temp
+        cols = sorted(memo, key=lambda key:key)
+        answer = []
+        for key in cols:
+            col = []
+            for row, val in sorted(memo[key]):
+                col.append(val)
+            answer.append(col)
+        return answer
