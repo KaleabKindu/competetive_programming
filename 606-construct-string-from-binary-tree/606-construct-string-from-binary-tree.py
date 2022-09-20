@@ -10,23 +10,15 @@ class Solution:
         def dfs(node = root):
             if node:
                 string.append(str(node.val))
-                
-                if node.left and node.right:
-                    string.append('(')
-                    dfs(node.left)
-                    string.append(')')
+                if not node.left and not node.right:
+                    return
+                string.append('(')
+                dfs(node.left)
+                string.append(')')
+                if node.right:
                     string.append('(')
                     dfs(node.right)
                     string.append(')')
-                elif node.left or node.right:
-                    string.append('(')
-                    dfs(node.left)
-                    string.append(')')
-                    if node.right:
-                        string.append('(')
-                        dfs(node.right)
-                        string.append(')')
-               
             return ""
         dfs()
         return "".join(string)
