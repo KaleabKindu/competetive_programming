@@ -6,19 +6,11 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        path = []
-        def dfs(node):
+        def dfs(node, largest = float("-inf")):
             if node:
-                good = True
-                for ancestor in path:
-                    if ancestor > node.val:
-                        good = False
-                
-                path.append(node.val)
-                left = dfs(node.left)
-                right = dfs(node.right)
-                path.pop()
-                return 1 + left + right if good else left + right
+                left = dfs(node.left, node.val if node.val > largest else largest)
+                right = dfs(node.right, node.val if node.val > largest else largest)
+                return left + right + 1 if node.val >= largest else left + right
             return 0
-        
+                
         return dfs(root)
