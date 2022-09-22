@@ -1,7 +1,12 @@
 from itertools import permutations
-class Solution:
-    def maxHeight(self, cuboids: List[List[int]]) -> int:
-       
+
+class Solution(object):
+    def maxHeight(self, cuboids):
+        """
+        :type cuboids: List[List[int]]
+        :rtype: int
+        """
+        
         cubes = []
         for cube in cuboids:
             seen = set()
@@ -9,6 +14,7 @@ class Solution:
                 if (perm[0], perm[1], perm[2]) not in seen:
                     cubes.append(list(perm))
                     seen.add((perm[0], perm[1], perm[2]))
+                    
         cubes = sorted(cubes, key=lambda cube: cube[0] * cube[1] * cube[2])
         n = len(cubes)
         valid = lambda cube1, cube2: cube1[0] <= cube2[0] and cube1[1] <= cube2[1] and cube1[2] <= cube2[2]
@@ -23,10 +29,3 @@ class Solution:
         return max(dp)
         
         
-        
-        
-        
-        
-        
-        
-    
