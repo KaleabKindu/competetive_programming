@@ -13,7 +13,6 @@ class Solution:
             helper(i + 1)
             path.append(candidates[i])
             helper(i)
-            helper(i + 1)
             path.pop()
         helper()
         return [list(temp) for temp in answer]
