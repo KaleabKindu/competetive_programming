@@ -3,10 +3,10 @@ class Solution:
         answer = []
         path = []
         def helper(i = 1, count = 0):
-            if i > n + 1:
-                return 
             if count == k:
                 answer.append([*path])
+                return 
+            if i > n :
                 return 
             helper(i + 1, count)
             path.append(i)
