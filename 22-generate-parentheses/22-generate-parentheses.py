@@ -1,12 +1,13 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         def valid(string):
-            stack = []
+            stack = 0
             for char in string:
-                if stack and stack[-1] == '(' and char == ')':
-                    stack.pop()
-                else:stack.append(char)
-            return len(stack) == 0
+                if char == ')':
+                    stack -= 1
+                else:stack += 1
+                if stack < 0: return 0
+            return stack == 0
         answer = []
         path = []
         def dp(cur = 0):
