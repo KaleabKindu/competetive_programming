@@ -1,16 +1,23 @@
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
+        # holds the numbers in each row
         rows = defaultdict(set)
+        # holds the numbers in each column
         cols = defaultdict(set)
+        # holds numbers in each 3x3 boxes
         boxes = defaultdict(set)
         candidates = [str(temp) for temp in range(1, 10)]
+        # holds key value pair of an index to a the corresponding box
         box = {}
+        
+        # add the numbers to thier respective rows and cols
         for i in range(len(board)):
             for j in range(len(board[0])):
                 if board[i][j] != '.':
                     rows[i].add(board[i][j])
                     cols[j].add(board[i][j])
                     
+        # add the numbers to their respective box           
         for  i in [0, 3, 6]:
             for m in [0, 3, 6]:
                 for j in range(i, i + 3):
@@ -19,7 +26,6 @@ class Solution:
                         if board[j][k] != '.':
                             boxes[(i, m)].add(board[j][k])
                             
-        # print(box)
         is_valid = lambda i, j, val: val not in rows[i] and val not in cols[j] and val not \
                             in boxes[box[(i, j)]]      
         def place_number(row, col, candidate):
@@ -43,6 +49,8 @@ class Solution:
                                 if backtrack(): return True
                                 remove_number(i, j, candidate)
                         return False
+                    
+            # returns true only if no '.' character remains
             return True
 
         backtrack()
