@@ -2,8 +2,7 @@ class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
         answer = []
         
-        placement = ['.' for i in range(n)]
-        path = []
+        placement = [['.' for i in range(n)] for i in range(n)]
         
         cols = set()
         pdiagonals = set()
@@ -13,21 +12,19 @@ class Solution:
                             pdiagonals and (row + col) not in ndiagonals
         
         def place_queen(row, col):
-            placement[col] = 'Q'
-            path.append("".join(placement[:]))
-            placement[col] = '.'
+            placement[row][col] = 'Q'
             cols.add(col)
             pdiagonals.add(row - col)
             ndiagonals.add(row + col)
         def remove_queen(row, col):
-            path.pop()
+            placement[row][col] = '.'
             cols.remove(col)
             pdiagonals.remove(row - col)
             ndiagonals.remove(row + col)    
         
         def backtrack(row = 0):
             if row >= n:
-                answer.append([*path]) 
+                answer.append(["".join(temp[:]) for temp in placement]) 
             for col in range(n):
                 if is_not_under_attack(row, col):
                     place_queen(row, col)
