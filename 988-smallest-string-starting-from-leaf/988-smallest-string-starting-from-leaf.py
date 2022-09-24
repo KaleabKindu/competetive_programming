@@ -7,13 +7,13 @@
 class Solution:
     def smallestFromLeaf(self, root: Optional[TreeNode]) -> str:
         
-        strings = []
+        self.string = "~"
         path = deque()
         def dfs(node = root):
             if node:
                 path.appendleft(chr(97 + node.val)) 
                 if not node.left and not node.right:
-                    strings.append("".join([*path]))
+                    self.string = min(self.string, "".join([*path]))
                     path.popleft()
                     return
                 dfs(node.left)
@@ -21,6 +21,5 @@ class Solution:
                 path.popleft()
                 
         dfs()
-        strings = sorted(strings)
-        return strings[0]
+        return self.string
         
