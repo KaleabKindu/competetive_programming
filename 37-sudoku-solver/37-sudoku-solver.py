@@ -15,15 +15,8 @@ class Solution:
                 if board[i][j] != '.':
                     rows[i].add(board[i][j])
                     cols[j].add(board[i][j])
-                    
-        # add the numbers to their respective box           
-        for  i in [0, 3, 6]:
-            for m in [0, 3, 6]:
-                for j in range(i, i + 3):
-                    for k in range(m, m + 3):
-                        if board[j][k] != '.':
-                            boxes[(j//3, k//3)].add(board[j][k])
-                            
+                    boxes[(i//3, j//3)].add(board[i][j])
+ 
         is_valid = lambda i, j, val: val not in rows[i] and val not in cols[j] and val not \
                             in boxes[(i//3, j//3)]      
         def place_number(row, col, candidate):
