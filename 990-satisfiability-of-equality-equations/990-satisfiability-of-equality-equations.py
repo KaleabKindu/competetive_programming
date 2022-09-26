@@ -1,7 +1,8 @@
-# Quick Union Implementation
+# Quick Union By Rank Implementation
 class UnionFind:
     def __init__(self):
         self.root = [i for i in range(26)]
+        self.rank = [0 for i in range(26)]
         
     def find(self, x):
         x = ord(x) - 97
@@ -13,7 +14,13 @@ class UnionFind:
         xroot = self.find(x)
         yroot = self.find(y)
         if xroot != yroot:
-            self.root[yroot] = xroot
+            if self.rank[xroot] > self.rank[yroot]:
+                self.root[yroot] = xroot
+            elif self.rank[xroot] < self.rank[yroot]:
+                self.root[xroot] = yroot
+            else:
+                self.root[yroot] = xroot
+                self.rank[xroot] += 1
                 
     def connected(self, x, y):
         return self.find(x) == self.find(y)
