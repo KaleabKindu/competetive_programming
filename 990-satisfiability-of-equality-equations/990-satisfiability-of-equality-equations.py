@@ -1,16 +1,18 @@
-# Quick Union By Rank Implementation
+# Quick Union By Rank Implementation with Path Compression
 class UnionFind:
     def __init__(self):
         self.root = [i for i in range(26)]
         self.rank = [0 for i in range(26)]
         
     def find(self, x):
-        x = ord(x) - 97
-        while self.root[x] != x:
-            x = self.root[x]
-        return x
+        if x == self.root[x]:
+            return x
+        self.root[x] = self.find(self.root[x])
+        return self.root[x]
         
     def union(self, x, y):
+        x = ord(x) - 97
+        y = ord(y) - 97
         xroot = self.find(x)
         yroot = self.find(y)
         if xroot != yroot:
@@ -23,6 +25,8 @@ class UnionFind:
                 self.rank[xroot] += 1
                 
     def connected(self, x, y):
+        x = ord(x) - 97
+        y = ord(y) - 97
         return self.find(x) == self.find(y)
 
 class Solution:
