@@ -1,23 +1,23 @@
-#   Quick Find Implementation
+# Quick Union Implementation
 class UnionFind:
     def __init__(self):
         self.root = [i for i in range(26)]
         
     def find(self, x):
         x = ord(x) - 97
-        return self.root[x]
+        while self.root[x] != x:
+            x = self.root[x]
+        return x
         
     def union(self, x, y):
         xroot = self.find(x)
         yroot = self.find(y)
         if xroot != yroot:
-            for i in range(len(self.root)):
-                if self.root[i] == yroot:
-                    self.root[i] = xroot
+            self.root[yroot] = xroot
                 
     def connected(self, x, y):
         return self.find(x) == self.find(y)
-    
+
 class Solution:
     def equationsPossible(self, equations: List[str]) -> bool:
         UF = UnionFind()
