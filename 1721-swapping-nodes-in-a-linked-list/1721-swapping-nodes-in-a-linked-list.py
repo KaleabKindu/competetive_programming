@@ -5,21 +5,18 @@
 #         self.next = next
 class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        self.begin = None
-        self.end = None
-        self.j = 1
-        def getElements(node = head, i = 1):
-            if i == k:
-                self.begin = node
-            if node.next == None:
-                if self.j == k:
-                    self.end = node
-                return
-            getElements(node.next, i + 1)
-            self.j += 1
-            if self.j == k:
-                self.end = node
-        getElements()
-        self.begin.val, self.end.val = self.end.val, self.begin.val
+        cur = head
+        nodes = []
+        while cur:
+            nodes.append(cur)
+            cur = cur.next
+        n = len(nodes)
+        l = 0
+        r = n - 1
+        while l < k - 1:
+            l += 1
+            r -= 1
+        nodes[l].val, nodes[r].val = nodes[r].val, nodes[l].val
         return head
+            
             
