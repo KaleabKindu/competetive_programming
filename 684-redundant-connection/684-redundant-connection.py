@@ -1,37 +1,24 @@
-class UnionFind:
-    def __init__(self, n):
-        self.root = [i for i in range(n + 1)]
-        self.rank = [0 for i in range(n + 1)]
-    def find(self,node1):
-        if self.root[node1] == node1:
-            return node1
-        self.root[node1] = self.find(self.root[node1])
-        return self.root[node1]
-    def union(self,node1, node2):
-        root1 = self.find(node1)
-        root2 = self.find(node2)
-        if root1 != root2:
-            if self.rank[root1] > self.rank[root2]:
-                self.root[root2] = root1
-            elif self.rank[root1] < self.rank[root2]:
-                self.root[root1] = root2
-            else:
-                self.root[root2] = root1
-                self.rank[root1] += 1
-                
-    def connected(self, node1, node2):
-        return self.find(node1) == self.find(node2)
-        
+
         
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        n = len(edges)
-        Uf = UnionFind(n)
-        redundant = []
+        graph = defaultdict(set)
+        seen = set()
+        def dfs(src, trg):
+            seen.add(src)
+            if src == trg:
+                return True
+            for n in graph[src]:
+                if n not in seen:
+                    if dfs(n, trg):
+                        return True
+            return False
         
         for head, tail in edges:
-            if not Uf.connected(head, tail):
-                Uf.union(head, tail)
-            else:
+            seen.clear()
+            if head in graph and tail in graph and dfs(head, tail):
                 return [head, tail]
+            
+            graph[head].add(tail)
+            graph[tail].add(head)
         
