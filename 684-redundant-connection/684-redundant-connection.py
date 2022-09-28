@@ -33,6 +33,5 @@ class Solution:
             if not Uf.connected(head, tail):
                 Uf.union(head, tail)
             else:
-                redundant = [head, tail]
-        return redundant
+                return [head, tail]
         
