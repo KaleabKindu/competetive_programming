@@ -1,7 +1,7 @@
 class UnionFind:
     def __init__(self, n):
-        self.root = {i:i for i in range(1, n + 1)}
-        self.rank = {i:0 for i in range(1, n + 1)}
+        self.root = [i for i in range(n + 1)]
+        self.rank = [0 for i in range(n + 1)]
     def find(self, node):
         if self.root[node] == node:
             return node
