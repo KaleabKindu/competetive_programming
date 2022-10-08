@@ -1,20 +1,23 @@
-class Solution(object):
-    def canPartition(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        
         self.total = sum(nums)
+        if self.total & 1:
+            return False
         n = len(nums)
-        memo = {}
+        @cache
         def dp(i = 0, total = 0):
             if i >= n:
                 return False
-            if (i, total) in memo:
-                return memo[(i, total)]
             if self.total - total <= total:
                 return True if self.total - total == total else False
-            memo[(i, total)] = dp(i + 1, total) or dp(i + 1, total + nums[i])
-            return memo[(i, total)]
+            if dp(i + 1, total):
+                return True
+            if dp(i + 1, total + nums[i]):
+                return True
+            return False
+        
         return dp()
+    
+            
             
