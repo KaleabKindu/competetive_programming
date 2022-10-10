@@ -24,7 +24,7 @@ class Solution:
                     self.answer = max(self.answer, left[1] - 1, right[1] - 1)
                     return node.val, 1
                     
-            return "", 0
+            return 1001, 0
         if root: self.answer= max(dfs()[1]-1,self.answer)
         return self.answer
                 
