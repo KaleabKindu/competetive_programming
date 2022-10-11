@@ -3,10 +3,9 @@ class Solution:
         n = len(nums)
         stack = []
         for i in range(n):
-            while stack and nums[stack[-1]] > nums[i]:
-                if (len(stack) - 1) + n - i >= k:
-                    stack.pop()
-                else: break
-            if len(stack) < k: stack.append(i)
-            
-        return [nums[i] for i in stack]
+            while stack and stack[-1] > nums[i] and (len(stack) - 1) + n - i >= k:
+                stack.pop()
+            if len(stack) < k: 
+                stack.append(nums[i])
+                
+        return stack
