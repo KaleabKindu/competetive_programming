@@ -7,6 +7,6 @@ class Solution:
                 if (len(stack) - 1) + n - i >= k:
                     stack.pop()
                 else: break
-            stack.append(i)
+            if len(stack) < k: stack.append(i)
             
-        return [nums[i] for i in stack][:k]
+        return [nums[i] for i in stack]
