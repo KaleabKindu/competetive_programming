@@ -6,11 +6,11 @@ class Solution:
             for v in _graph[u]:
                 graph[u].append(v)
                 graph[v].append(u)
-                
+        red = set()
+        blue = set()       
         def bipartite_bfs(cur):
             queue = deque([(cur,'r')])
-            red = set([cur])
-            blue = set()
+            red.add(cur)
             while queue:
                 node, color = queue.popleft()
                 for neighbor in graph[node]:
@@ -29,7 +29,7 @@ class Solution:
             return True
         
         for i in range(n):
-            if not bipartite_bfs(i):
+            if i not in red and i not in blue and not bipartite_bfs(i):
                 return False
         return True
         
