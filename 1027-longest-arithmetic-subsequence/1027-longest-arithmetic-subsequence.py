@@ -1,5 +1,9 @@
-class Solution:
-    def longestArithSeqLength(self, nums: List[int]) -> int:
+class Solution(object):
+    def longestArithSeqLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         n = len(nums)        
         dp = defaultdict(lambda: defaultdict(int))
         answer = 0
@@ -9,6 +13,3 @@ class Solution:
                 dp[i][diff] = max(dp[i][diff], 1 + dp[j].get(diff, 1))
                 answer = max(answer, dp[i][diff])
         return answer
-                
-                
-                
