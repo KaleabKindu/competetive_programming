@@ -10,10 +10,5 @@ class Solution:
         :type node: ListNode
         :rtype: void Do not return anything, modify node in-place instead.
         """
-        def helper(root = node):
-            if not root.next:
-                return None
-            root.val = root.next.val
-            root.next = helper(root.next)
-            return root
-        helper()
+        node.val = node.next.val
+        node.next = node.next.next
