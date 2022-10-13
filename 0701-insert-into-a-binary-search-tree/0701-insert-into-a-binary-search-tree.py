@@ -7,13 +7,13 @@
 class Solution:
     def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         answer = TreeNode(0,root)
-        def searchBST(node, val):
+        def searchBST(node = root):
             if node:
                 if val < node.val:
-                    node.left = searchBST(node.left, val)
+                    node.left = searchBST(node.left)
                 if val > node.val:
-                    node.right = searchBST(node.right, val)
+                    node.right = searchBST(node.right)
                 return node
             return TreeNode(val)
-        answer.left = searchBST(root, val)
+        answer.left = searchBST()
         return answer.left
