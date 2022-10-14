@@ -15,7 +15,7 @@ class Solution:
             for neighbor in graph[cur]:
                 degree[neighbor] -= 1
                 answer[neighbor].add(cur)
-                answer[neighbor] = answer[neighbor].union(answer[cur])
+                answer[neighbor].update(answer[cur])
                 if degree[neighbor] == 0:
                     queue.append(neighbor)
         return [sorted(ancestor) for ancestor in answer]
