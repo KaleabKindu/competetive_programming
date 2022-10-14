@@ -10,10 +10,8 @@ class Solution:
             if degree[i] == 0:
                 queue.append(i)
         answer = [set() for _ in range(n)]
-        ancestors = []
         while queue:
             cur = queue.popleft()
-            ancestors.append(cur)
             for neighbor in graph[cur]:
                 degree[neighbor] -= 1
                 answer[neighbor].add(cur)
