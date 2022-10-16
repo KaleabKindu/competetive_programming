@@ -1,5 +1,7 @@
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
+        if len(s) > 12:
+            return []
         ip = [char for char in s]
         n = len(ip)
         answer = set()
@@ -8,6 +10,8 @@ class Solution:
             if i >= n:
                 if len(path) == 4:
                     answer.add('.'.join(path))
+                return
+            if len(path) > 4:
                 return
             for j in range(1,4):
                 bit = "".join(ip[i: i + j])
