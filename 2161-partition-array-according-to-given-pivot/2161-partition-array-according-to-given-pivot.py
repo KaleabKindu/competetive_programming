@@ -1,17 +1,12 @@
 class Solution:
     def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
         n = len(nums)
-        less = []
-        equal = []
-        greater = []
-        for i in range(n):
-            if nums[i] < pivot:
-                less.append(nums[i])
-            elif nums[i] > pivot:
-                greater.append(nums[i])
-            else:
-                equal.append(nums[i])
-                
-        return less + equal + greater
+        def helper(num):
+            if num < pivot:
+                return -1
+            elif num > pivot:
+                return 1
+            return 0
+        return sorted(nums, key=helper)
                 
         
