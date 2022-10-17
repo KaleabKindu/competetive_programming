@@ -8,6 +8,7 @@ class Solution:
             subtrees = 0
             for k in range(i, j + 1):
                 subtrees += dp(i, k - 1) * dp(k + 1, j)
+                
             return subtrees 
         
         return dp() 
