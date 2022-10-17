@@ -12,7 +12,6 @@ class Solution:
                 start = min(start, intervals[j][0])
                 end = max(end, intervals[j][1])
                 j += 1
-            
             answer.append([start, end])
             i = j
             
