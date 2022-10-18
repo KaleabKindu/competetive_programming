@@ -18,10 +18,7 @@ class Solution:
         while queue:
             current_person = queue.popleft()
             
-            for neighbor in graph[current_person]:
-                if quiet[current_person] < quiet[answer[neighbor]]:
-                    answer[neighbor] = current_person
-                    
+            for neighbor in graph[current_person]:  
                 if quiet[answer[current_person]] < quiet[answer[neighbor]]:
                     answer[neighbor] = answer[current_person]
                     
