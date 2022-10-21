@@ -10,10 +10,11 @@ class Solution:
         answer = 0
         total = 0
         for i in range(n):
-            total += diff[i]
             if total < 0:
                 total = 0
-                answer = i + 1
+                answer = i 
+            total += diff[i]
+            
         
         return answer
         
