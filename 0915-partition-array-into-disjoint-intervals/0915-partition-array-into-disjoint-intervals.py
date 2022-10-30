@@ -1,7 +1,5 @@
 class Solution:
     def partitionDisjoint(self, nums: List[int]) -> int:
-        if len(set(nums)) == 1:
-            return 1
         n = len(nums)
         minimum = [num for num in nums]
         _min = nums[-1]
@@ -13,6 +11,6 @@ class Solution:
             if i and minimum[i] >= maximum:
                 return i
             maximum = max(maximum, nums[i])
-            
+        return 1
                 
             
