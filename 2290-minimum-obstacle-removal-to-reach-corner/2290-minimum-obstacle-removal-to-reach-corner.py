@@ -8,20 +8,19 @@ class Solution:
         
         heap = [(0, 0, 0)] # row, col, obstacles
         heapify(heap)
-        visited = defaultdict(lambda :float("inf"))
+        best = [[float('inf')] * m for i in range(n)]
         
         while heap:
             obs, r, c = heappop(heap)
             if r == n - 1 and c == m - 1:
                 return obs
-            
             for direction in directions:
                 nr, nc = r + direction[0], c + direction[1]
                 if in_bound(nr, nc):
-                    new_val = obs + grid[nr][nc]
-                    if new_val < visited[(nr,nc)]:
-                        visited[(nr, nc)] = new_val
-                        heappush(heap, (new_val, nr, nc))
+                    weight = obs + grid[nr][nc]
+                    if weight < best[nr][nc]:
+                        best[nr][nc] = weight
+                        heappush(heap, (weight, nr, nc))
 
         
         
