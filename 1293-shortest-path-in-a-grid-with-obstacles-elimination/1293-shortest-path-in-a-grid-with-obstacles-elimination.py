@@ -7,7 +7,7 @@ class Solution:
         
         queue = deque([(0, 0, 0)])
         visited = set()
-        visited.add((0, 0, 0, 0))
+        visited.add((0, 0, 0))
         steps = 0
         while queue:
             for i in range(len(queue)):
