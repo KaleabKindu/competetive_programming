@@ -10,6 +10,7 @@ class Solution:
         
         total = sum(unique.values())
         pairs = factorial(total) // (2 * factorial(total - 2))
+
         for value in unique.values():
             if value >= 2:
                 invalid_pairs = factorial(value) // (2 * factorial(value - 2))
