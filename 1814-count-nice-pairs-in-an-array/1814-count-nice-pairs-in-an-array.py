@@ -16,10 +16,9 @@ class Solution:
         for i in range(n):
             reverse = reverse_number(nums[i])
             unique[nums[i] - reverse] += 1
-        total = sum(unique.values())
+            
         nice = 0
         for val in unique.values():
-            if val >= 2:
-                nice += (math.factorial(val) // (2 *math.factorial(val - 2)))
+            nice += (val * (val - 1) // 2)
             
         return nice % (10**9 + 7)
