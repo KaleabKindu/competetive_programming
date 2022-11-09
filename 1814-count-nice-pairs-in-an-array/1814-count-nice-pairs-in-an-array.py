@@ -1,3 +1,4 @@
+import math
 class Solution:
     def countNicePairs(self, nums: List[int]) -> int:
         if len(nums) < 2:
@@ -19,6 +20,6 @@ class Solution:
         nice = 0
         for val in unique.values():
             if val >= 2:
-                nice += (factorial(val) // (2 * factorial(val - 2)))
+                nice += (math.factorial(val) // (2 *math.factorial(val - 2)))
             
         return nice % (10**9 + 7)
