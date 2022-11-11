@@ -1,6 +1,7 @@
 class Solution:
     def findOriginalArray(self, changed: List[int]) -> List[int]:
         n = len(changed)
+        
         if n % 2 != 0:
             return []
         
