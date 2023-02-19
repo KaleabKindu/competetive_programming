@@ -3,7 +3,6 @@ class Solution:
         n = len(nums)
         nums.sort()
         answer = []
-        
         i = 0
         while i < n:
             j = i
